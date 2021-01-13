@@ -1,6 +1,6 @@
-import React,{useEffect,useState} from "react";
+import React from "react";
 import styled from "styled-components"
-import ReactPaginate from 'react-paginate';
+
 
 
 const Wrapper = styled.div`
@@ -73,11 +73,13 @@ const DisplayRecords = (props)=>{
     return(
         <RecordsWrapper>
             {
-            props?.records?.records?.profiles?.map((record)=>{
+            props?.profiles?.map((profile)=>{
                 return(
-                    <div key = {record.userName}>
+                    <div key = {profile?.UserName}>
                         <span>
-                            {record.FirstName}
+                            {profile?.FirstName} <br/>
+                            {profile?.LastName} <br/>
+                            {profile?.UserName}
                         </span>
                         
                     </div>
@@ -88,49 +90,11 @@ const DisplayRecords = (props)=>{
     )
 }
 
-const GetProfiles = ()=>{
-    const [records, setRecords] = useState([]) 
-    const [error, setError] = useState("")
-
-    const fetchProfiles = async()=>{
-        try{
-            const data = await (await fetch("http://api.enye.tech/v1/challenge/records")).json()
-            setRecords(data)
-        }
-        catch(e){
-            setError("An Error Occured. Please reload")
-        }
-        
-    }
-
-    useEffect(()=>{
-        fetchProfiles()
-    },[])
-
-    const handlePageClick = (data) => {
-        console.log(data.selected)
-    };
-
+const GetProfiles = ({profiles})=>{
     return(
         <Wrapper>
-            <DisplayRecords records = {records}/>
-            <ReactPaginate
-            key ={2}
-            previousLabel={'<'}
-            nextLabel={'>'}
-            breakLabel={'...'}
-            pageClassName={"current-page"}
-            activeClassName={"active"}
-            previousClassName={"previous-page"}
-            nextLinkClassName={"next-link"}
-            breakLinkClassName={"break-link"}
-            previousLinkClassName={"previous-link"}
-            pageCount={records.size}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={2}
-            onPageChange={handlePageClick}
-            containerClassName={'pagination'}
-            />
+            <DisplayRecords profiles = {profiles}/>
+            
         </Wrapper>
     )
 }
