@@ -5,52 +5,6 @@ import styled from "styled-components"
 
 const Wrapper = styled.div`
 
-.pagination {
-    display: flex;
-    justify-content: flex-end;
-    position:relative;
-    right:30px;
-
-    li {
-        border: 1px solid  #A1168A;
-        border-radius: 5px;
-        margin-left: 20px;
-        cursor: pointer;
-        text-align: center;
-        outline:none;
-        list-style-type:none;
-    
-        }
-        li a{
-            display:block;
-            width:100%;
-            padding:10px;
-        }
-    .active {
-      background-color: #A1168A;
-      color: #fff;
-    }
-
-    }
-    @media (max-width:950px){
-        padding-left: 0px;
-        padding-right:10px;
-    }
-    @media (max-width:479px){
-        .pagination {
-        justify-content:center;
-        right:0px;
-        li{
-            margin-left: 15px;
-        }
-        li a{
-            display:block;
-            width:100%;
-            padding:5px;
-        }
-        }
-        
-    }
 
 `
 
