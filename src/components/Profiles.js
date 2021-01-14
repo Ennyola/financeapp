@@ -100,12 +100,21 @@ const Profiles = ()=>{
         scrollToTop()
     };
 
-
-    console.log(profiles.length <20)
+    const filterByTerm = (name,term)=>{
+        if(term === "Gender"){
+            const filteredArray = records?.records?.profiles?.filter((item)=> item[`${term}`].toLowerCase() === `${name.toLowerCase()}` )
+            setProfiles(filteredArray)
+        }
+        if(term === "PaymentMethod"){
+            const filteredArray = records?.records?.profiles?.filter((item)=> item[`${term}`].toLowerCase() === `${name.toLowerCase()}` )
+            setProfiles(filteredArray)
+        }
+        
+    }
     return( 
         <Wrapper className ="container">
             <SearchBar onSearchSubmit ={getSearchedterm}/>
-            <Filter/>
+            <Filter filterByTerm={filterByTerm}/>
             <GetProfiles profiles = {profiles}/>
             
              <ReactPaginate

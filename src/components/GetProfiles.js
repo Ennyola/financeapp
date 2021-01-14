@@ -33,7 +33,9 @@ const DisplayRecords = (props)=>{
                         <span>
                             {profile?.FirstName} <br/>
                             {profile?.LastName} <br/>
-                            {profile?.UserName}
+                            {profile?.UserName} <br/>
+                            {profile?.Gender} <br/>
+                            {profile?.PaymentMethod} <br/>
                         </span>
                         
                     </div>
