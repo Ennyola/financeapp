@@ -14,14 +14,25 @@ const FilterButton = styled.div`
 
 const FilterSections = styled.div`
     display:flex;
+   
     .gender-filter,.payment-method-filter{
         margin-top:30px;
         margin-left:130px;
         h6{
-        padding-bottom:20px;
-        border-bottom: 1px solid grey;
+            padding-bottom:20px;
+            border-bottom: 1px solid grey;
+        }
+        
     }
+
+    @media (max-width:575px){
+        justify-content:space-around;
+        .gender-filter,.payment-method-filter{
+            margin-left:0px;
+        }    
+        
     }
+    
 
 `
 const FilterList= styled.div`
@@ -37,8 +48,7 @@ const FilterList= styled.div`
 
 `
 
-export const Filter = ({filterByTerm}) => {
-    const [filterButtonClicked, setFilterButtonClicked] = useState(false)
+export const Filter = ({filterByTerm,filterButtonClicked,setFilterButtonClicked}) => {
     const [genderFilter] = useState([
         {   
             id:1,
@@ -96,7 +106,6 @@ export const Filter = ({filterByTerm}) => {
             </FilterButton>
 
             { filterButtonClicked &&
-
                 <FilterSections>
                     <div className = "gender-filter">
                         <h6>Gender</h6>

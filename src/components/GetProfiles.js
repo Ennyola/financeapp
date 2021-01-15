@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 const RecordsWrapper = styled.div`
     display:grid;
     grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
-    grid-gap:60px;
+    grid-gap:100px;
     justify-items:center;
     padding:20px;
 
@@ -21,12 +21,12 @@ const RecordsWrapper = styled.div`
 const Card = styled.div`
     margin-top:60px;
     background-color:#2C3246;
-    width:300px;
-    height:350px;
+    width:350px;
+    height:380px;
     border-radius:10px;
     padding:30px;
     position:relative;
-    text-align:center;
+
     .image-wrapper{
         top:-40px;
         left:30%;
@@ -36,21 +36,41 @@ const Card = styled.div`
         width:130px;
         border-radius:50%;
         background-color: #fff;
-    }  
-    img{
+        img{
         border-radius:50%;
         object-fit:cover;
         height:100%;
         width:100%;
-    }
+        }
+    } 
+    
     h5{
         text-align:center;
-        font-weight:normal;
-        margin-top:100px;
+        font-weight:900;
+        margin-top:80px;
+        font-size:23px;
+        margin-bottom:10px;
+
     }
-    .profiles-name{
-        color:#fff
+    .username{
+        font-size:18px;
+        display:block;
+        height:50px;
+        text-align:center;
     }
+    
+    .profiles-display{
+
+      div{
+          text-align:center;
+          margin-top:3px;
+      }
+    }
+    
+
+    
+
+    
 `
 
 const displayGenderImage = (gender)=>{
@@ -76,14 +96,15 @@ const DisplayRecords = (props)=>{
                         <span className ="image-wrapper">
                             <img src={displayGenderImage(profile?.Gender)} alt="j"/>
                         </span>
-                        
                         <h5>{profile?.FirstName} {profile?.LastName}</h5>
-                        <span>
-                           <div> <span className="profiles-name">Username</span>:{profile?.UserName} </div> 
-                           <div> Gender: {profile?.Gender} </div> 
-                           <div> Payment Method: {profile?.PaymentMethod}  </div>
-                           <div>Card Type: {profile?.CreditCardType}</div> 
-                           <div>Card Number: {profile?.CreditCardNumber}</div>
+                        <span className = "username">( {profile?.UserName} )</span>
+                        <span className = "profiles-display"> 
+                           <div> Gender : <span className = "profiles-value">{profile?.Gender}</span> </div>
+                           <div>Phone Number : <span> {profile?.PhoneNumber}</span></div> 
+                           <div>Card Type : {profile?.CreditCardType}</div> 
+                           <div>Card Number : {profile?.CreditCardNumber}</div>
+                           <div> Payment Method : {profile?.PaymentMethod}  </div>
+  
                         </span>
                         
                     </Card>
