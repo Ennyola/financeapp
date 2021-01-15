@@ -14,9 +14,10 @@ const Wrapper = styled.div`
     justify-content: flex-end;
     position:relative;
     right:30px;
+    
 
     li {
-        border: 1px solid  #A1168A;
+        border: 1px solid  #fff;
         border-radius: 5px;
         margin-left: 20px;
         cursor: pointer;
@@ -30,9 +31,10 @@ const Wrapper = styled.div`
             width:100%;
             padding:10px;
         }
+        
     .active {
-      background-color: #A1168A;
-      color: #fff;
+      background-color: #fff;
+      color: black ;
     }
 
     }
@@ -64,6 +66,7 @@ const Profiles = ()=>{
     const [setError] = useState("")
     const [postsPerPage] = useState(20)
     const [isSearched, setIsSearched] = useState(false)
+    const [term, setTerm] = useState("")
 
     useEffect(()=>{
         const fetchProfiles = async()=>{
@@ -80,9 +83,9 @@ const Profiles = ()=>{
         fetchProfiles()
     },[])
 
-    const getSearchedterm = (term)=>{
-       const record = records?.records?.profiles?.filter(item=> item.FirstName.toLowerCase() ===term.toLowerCase())
-       setProfiles(record)
+    const getSearchedterm = (e)=>{
+        const record = records?.records?.profiles?.filter(item=> item.FirstName.toLowerCase().includes(e.target.value.toLowerCase()))
+        setProfiles(record)
        setIsSearched(true)
     }
     const scrollToTop=()=>{
@@ -112,7 +115,7 @@ const Profiles = ()=>{
     }
     return( 
         <Wrapper className ="container">
-            <SearchBar onSearchSubmit ={getSearchedterm}/>
+            <SearchBar onInputChange ={getSearchedterm}/>
             <Filter filterByTerm={filterByTerm}/>
             <GetProfiles profiles = {profiles}/>
             

@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 import femaleImage from "../photos/426-4264903_user-avatar-png-picture-avatar-profile-dummy-transparent.png"
 import maleImage from "../photos/head-659652_960_720.png"
-
+import randomImage from "../photos/unnamed.jpg"
 const Wrapper = styled.div`
     
 
@@ -19,12 +19,14 @@ const RecordsWrapper = styled.div`
 
 `
 const Card = styled.div`
+    margin-top:60px;
     background-color:#2C3246;
-    width:260px;
+    width:300px;
     height:350px;
     border-radius:10px;
     padding:30px;
     position:relative;
+    text-align:center;
     .image-wrapper{
         top:-40px;
         left:30%;
@@ -51,15 +53,28 @@ const Card = styled.div`
     }
 `
 
+const displayGenderImage = (gender)=>{
+    if(gender ==="Male"){
+        return maleImage
+    }   
+    else if(gender === "Female"){
+        return femaleImage
+    }
+    else{
+        return randomImage
+    }
+}
+
+
 const DisplayRecords = (props)=>{
     return(
         <RecordsWrapper>
             {
             props?.profiles?.map((profile)=>{
                 return(
-                    <Card key = {profile?.UserName}>
+                    <Card className ="shadow-lg" key = {profile?.UserName}>
                         <span className ="image-wrapper">
-                            <img src={profile?.Gender === "Male" ? maleImage: femaleImage } alt="j"/>
+                            <img src={displayGenderImage(profile?.Gender)} alt="j"/>
                         </span>
                         
                         <h5>{profile?.FirstName} {profile?.LastName}</h5>
@@ -68,6 +83,7 @@ const DisplayRecords = (props)=>{
                            <div> Gender: {profile?.Gender} </div> 
                            <div> Payment Method: {profile?.PaymentMethod}  </div>
                            <div>Card Type: {profile?.CreditCardType}</div> 
+                           <div>Card Number: {profile?.CreditCardNumber}</div>
                         </span>
                         
                     </Card>

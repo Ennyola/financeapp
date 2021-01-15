@@ -1,30 +1,41 @@
 import React, {useState} from 'react'
 import styled from "styled-components"
-
-const Form = styled.form`
-    display:flex;
-    justify-content:center;
+import { BsSearch } from "react-icons/bs";
+const InputWrapper = styled.div`
+    display: block;
+    margin: 0 auto;
+    position:relative;
     padding:40px;
+    width:300px;
+    input{
+       width:200px;
+       padding:0.3rem;
+       border-radius:30px;
+
+    }
+    /* .search-icon{
+        position:absolute;
+        background-color:grey;
+        
+        right:40px;
+        bottom:45px;
+        height:40px; 
+    } */
 
 `
 
-export const SearchBar = ({onSearchSubmit}) => {
-    const [term, setTerm] = useState("")
+export const SearchBar = ({onInputChange}) => {
     return (
         <div>
-            <Form onSubmit={e=>{
-                e.preventDefault()
-                onSearchSubmit(term)
-            }}>
+            <InputWrapper>
                 <input 
                 type="text"
-                value={term}
-                onChange={e=> setTerm(e.target.value)}
+                onChange={e=>onInputChange(e)}
+                placeholder={"Search By FirstName"}
+                className=" search-input"
                 />
-                <button className="btn btn-primary">Search</button>
-
-            </Form>
-            
+        
+            </InputWrapper>   
         </div>
     )
 }
