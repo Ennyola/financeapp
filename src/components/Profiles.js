@@ -9,7 +9,6 @@ import {Filter} from "./Filter"
 
 const Wrapper = styled.div`
     
-    
 .pagination {
     display: flex;
     justify-content: flex-end;

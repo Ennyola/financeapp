@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components"
 
-
+import femaleImage from "../photos/426-4264903_user-avatar-png-picture-avatar-profile-dummy-transparent.png"
+import maleImage from "../photos/head-659652_960_720.png"
 
 const Wrapper = styled.div`
-
+    
 
 `
 
@@ -14,13 +15,40 @@ const RecordsWrapper = styled.div`
     grid-gap:60px;
     justify-items:center;
     padding:20px;
-    div{
-        height:250px;
-        width:300px;
-        border:1px solid green;
-        
-    }
 
+
+`
+const Card = styled.div`
+    background-color:#2C3246;
+    width:260px;
+    height:350px;
+    border-radius:10px;
+    padding:30px;
+    position:relative;
+    .image-wrapper{
+        top:-40px;
+        left:30%;
+        position:absolute;
+        display:block;
+        border:3px solid;
+        width:130px;
+        border-radius:50%;
+        background-color: #fff;
+    }  
+    img{
+        border-radius:50%;
+        object-fit:cover;
+        height:100%;
+        width:100%;
+    }
+    h5{
+        text-align:center;
+        font-weight:normal;
+        margin-top:100px;
+    }
+    .profiles-name{
+        color:#fff
+    }
 `
 
 const DisplayRecords = (props)=>{
@@ -29,16 +57,20 @@ const DisplayRecords = (props)=>{
             {
             props?.profiles?.map((profile)=>{
                 return(
-                    <div key = {profile?.UserName}>
-                        <span>
-                            {profile?.FirstName} <br/>
-                            {profile?.LastName} <br/>
-                            {profile?.UserName} <br/>
-                            {profile?.Gender} <br/>
-                            {profile?.PaymentMethod} <br/>
+                    <Card key = {profile?.UserName}>
+                        <span className ="image-wrapper">
+                            <img src={profile?.Gender === "Male" ? maleImage: femaleImage } alt="j"/>
                         </span>
                         
-                    </div>
+                        <h5>{profile?.FirstName} {profile?.LastName}</h5>
+                        <span>
+                           <div> <span className="profiles-name">Username</span>:{profile?.UserName} </div> 
+                           <div> Gender: {profile?.Gender} </div> 
+                           <div> Payment Method: {profile?.PaymentMethod}  </div>
+                           <div>Card Type: {profile?.CreditCardType}</div> 
+                        </span>
+                        
+                    </Card>
                 )
             })
             }
