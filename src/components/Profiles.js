@@ -105,7 +105,7 @@ const Profiles = ()=>{
         const fetchProfiles = async()=>{
             setLoading(true)
             try{
-                const data = await (await fetch("http://api.enye.tech/v1/challenge/records")).json()
+                const data = await (await fetch("https://api.enye.tech/v1/challenge/records")).json()
                 setRecords(data)
                 setProfiles(data?.records?.profiles?.slice(0,postsPerPage))
             }
